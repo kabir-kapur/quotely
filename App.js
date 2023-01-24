@@ -4,21 +4,23 @@ import { Pressable, SafeAreaView, TextInput, Text } from 'react-native';
 import { styles } from './Styles.js';
 
 export default function TextBox() {
-  const [number, onChangeNumber] = React.useState('');
+  const [quote, onChangeQuote] = React.useState('');
+  const [author, onChangeAuthor] = React.useState('');
 
     return (
     <SafeAreaView>  
+      <Text style={styles.title}>quotely.</Text>
       <TextInput
         style={styles.quoteInput}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={onChangeQuote}
+        value={quote}
         placeholder="quote"
         inputMode="text"
       />
       <TextInput
         style={styles.authorInput}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={onChangeAuthor}
+        value={author}
         placeholder="author"
         inputMode="text"
       />
