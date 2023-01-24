@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import 'expo-dev-menu';
+import { Pressable, SafeAreaView, TextInput, Text } from 'react-native';
+import { styles } from './Styles.js';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+export default function TextBox() {
+  const [number, onChangeNumber] = React.useState('');
+
+    return (
+    <SafeAreaView>  
+      <TextInput
+        style={styles.quoteInput}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="quote"
+        inputMode="text"
+      />
+      <TextInput
+        style={styles.authorInput}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="author"
+        inputMode="text"
+      />
+      <Pressable style={styles.pressable}>
+        <Text style={styles.text}>Add Quote</Text>  
+      </Pressable>
+    </SafeAreaView>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
