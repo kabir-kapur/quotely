@@ -1,30 +1,36 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+    safeAreaView: {
+        backgroundColor: 'pink',
+        height: "100%",
+    },
     title: {
       alignSelf: 'center',
-      fontSize: 40,
+      fontSize: 30,
+      fontFamily: 'Verdana',
       top: 20,
+      color: 'black'
     },
-    quoteInput: {
+    quoteInput: { 
       height: 75,
       margin: 12,
-      borderWidth: 4,
       padding: 10,
       borderRadius: 15,
       top: 50,
+      backgroundColor: "lightblue",
     },
     authorInput: {
       height: 75,
       margin: 12,
-      borderWidth: 4,
       padding: 10,
       borderRadius: 15,
       width: "65%",
       top: 50,
+      backgroundColor: "yellow",
     },
     pressable: {
-      backgroundColor: 'black',
+      backgroundColor: 'lightgreen',
       alignSelf: 'flex-end',
       top: -50,
       justifyContent: 'center',
@@ -35,8 +41,13 @@ export const styles = StyleSheet.create({
       margin: 12,
 
     },
-    text: {
-      color: "white",
+    buttonText: {
+      color: "black",
       textAlign: 'center',
-    }
+    },
+    quoteText: {
+      alignSelf: 'center',
+      fontSize: 16,
+      top: 20,
+    },
   });
