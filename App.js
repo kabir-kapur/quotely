@@ -4,9 +4,6 @@ import { Pressable, SafeAreaView, TextInput, Text, Button, View } from 'react-na
 import { styles } from './Styles.js';
 import { setOnPressTrue } from './Functions.js';
 
-let updatedQuote = "";
-let updatedAuthor = "";
-
 export default function TextBox() {
   const [quote, onChangeQuote] = React.useState('');
   const [author, onChangeAuthor] = React.useState('');
@@ -32,7 +29,7 @@ export default function TextBox() {
         />
         <Pressable 
          style={styles.pressable} 
-         onPress={ () => { onButtonPressed(true) && (updatedQuote = quote) && (updatedAuthor = author) } }
+         onPress={ () => { (!updatePair ? onButtonPressed(true) : ""); updatedQuote = quote; updatedAuthor = author; } }
         >
           <Text style={styles.buttonText}>Add Quote</Text>  
         </Pressable>
