@@ -4,6 +4,8 @@ import { Pressable, SafeAreaView, TextInput, Text, Button, View } from 'react-na
 import { styles } from './Styles.js';
 import { setOnPressTrue } from './Functions.js';
 
+let beast = "beast";
+
 export default function TextBox() {
   const [quote, onChangeQuote] = React.useState('');
   const [author, onChangeAuthor] = React.useState('');
