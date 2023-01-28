@@ -16,3 +16,7 @@ export function addQuoteThenAlertQuote(_quotes, _quote, _author) {
 
     return(Alert.alert(_alert[0], _alert[1]));
 }
+
+export function renderItem() {
+    
+}

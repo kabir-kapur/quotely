@@ -1,14 +1,21 @@
 import React from 'react';
 import 'expo-dev-menu';
-import { Pressable, SafeAreaView, TextInput, Text, Button, View } from 'react-native';
+import { Pressable, 
+         SafeAreaView, 
+         TextInput, 
+         Text, 
+         View, 
+         FlatList } from 'react-native';
 import { styles } from './Styles.js';
-import { setOnPressTrue } from './Functions.js';
 
 export default function TextBox() {
+  const data = new Array();
+
   const [quote, onChangeQuote] = React.useState('');
   const [author, onChangeAuthor] = React.useState('');
-  const [updatePair, onButtonPressed] = React.useState(false);
+  const [quoteList, setQuoteList] = React.useState(data);
 
+  console.log("typeof data: " + (typeof data));
     return (
     <SafeAreaView style={styles.safeAreaView}>
       <View>
@@ -29,14 +36,18 @@ export default function TextBox() {
         />
         <Pressable 
          style={styles.pressable} 
-         onPress={ () => { (!updatePair ? onButtonPressed(true) : ""); updatedQuote = quote; updatedAuthor = author; } }
-        >
+         onPress={ () => { setQuoteList(data.push({"author": author, "quote": quote})); 
+                           console.log(data)} } >
           <Text style={styles.buttonText}>Add Quote</Text>  
         </Pressable>
       </View> 
-      <View>
-        { updatePair && <Text style={styles.quoteText}>"{updatedQuote}" -{updatedAuthor}</Text> }
-      </View>
+      <FlatList
+        keyExtractor = {item => item.author}
+        data={quoteList}
+        renderItem={(item) => (
+          <Text style={styles.quoteText}>"{item["quote"]}" -{item["author"]}</Text>
+        )}
+      />
     </SafeAreaView>
   );
 };
