@@ -8,14 +8,13 @@ import { Pressable,
          FlatList } from 'react-native';
 import { styles } from './Styles.js';
 
+const data = [];
+
 export default function TextBox() {
-  const data = new Array();
+  const [quoteString, onChangeQuote] = React.useState('');
+  const [authorString, onChangeAuthor] = React.useState('');
+  const [quoteList, setQuoteList] = React.useState([]);
 
-  const [quote, onChangeQuote] = React.useState('');
-  const [author, onChangeAuthor] = React.useState('');
-  const [quoteList, setQuoteList] = React.useState(data);
-
-  console.log("typeof data: " + (typeof data));
     return (
     <SafeAreaView style={styles.safeAreaView}>
       <View>
@@ -23,20 +22,20 @@ export default function TextBox() {
         <TextInput
           style={styles.quoteInput}
           onChangeText={onChangeQuote}
-          value={quote}
           placeholder="quote"
           inputMode="text"
         />
         <TextInput
           style={styles.authorInput}
           onChangeText={onChangeAuthor}
-          value={author}
           placeholder="author"
           inputMode="text"
         />
         <Pressable 
          style={styles.pressable} 
-         onPress={ () => { setQuoteList(data.push({"author": author, "quote": quote})); 
+         onPress={ () => { data.push({author: authorString, quote: quoteString});
+                           setQuoteList(data);
+                           console.log(quoteList) 
                            console.log(data)} } >
           <Text style={styles.buttonText}>Add Quote</Text>  
         </Pressable>
@@ -45,7 +44,7 @@ export default function TextBox() {
         keyExtractor = {item => item.author}
         data={quoteList}
         renderItem={(item) => (
-          <Text style={styles.quoteText}>"{item["quote"]}" -{item["author"]}</Text>
+          <Text style={styles.quoteText}>"{item.quote}" -{item.author}</Text>
         )}
       />
     </SafeAreaView>
