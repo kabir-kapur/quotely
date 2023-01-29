@@ -8,12 +8,13 @@ import { Pressable,
          FlatList } from 'react-native';
 import { styles } from './Styles.js';
 
-const data = [];
+const data = []; // i fucking hate javascript scoping
 
 export default function TextBox() {
   const [quoteString, onChangeQuote] = React.useState('');
   const [authorString, onChangeAuthor] = React.useState('');
   const [quoteList, setQuoteList] = React.useState([]);
+  const [quoteListUID, setQuoteListUID] = React.useState(0);
 
     return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -33,20 +34,24 @@ export default function TextBox() {
         />
         <Pressable 
          style={styles.pressable} 
-         onPress={ () => { data.push({author: authorString, quote: quoteString});
+         onPress={ () => { data.push({ id: quoteListUID, 
+                                      author: authorString, 
+                                      quote: quoteString });
                            setQuoteList(data);
-                           console.log(quoteList) 
-                           console.log(data)} } >
+                           setQuoteListUID(quoteListUID + 1);
+                           } } >
           <Text style={styles.buttonText}>Add Quote</Text>  
         </Pressable>
       </View> 
-      <FlatList
-        keyExtractor = {item => item.author}
-        data={quoteList}
-        renderItem={(item) => (
-          <Text style={styles.quoteText}>"{item.quote}" -{item.author}</Text>
-        )}
-      />
+      <View>
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={quoteList}
+          renderItem={({ item }) => 
+            <Text style={styles.quoteText}>"{item.quote}" -{item.author}</Text>}
+          extraData={quoteList} // enables rerendering of the flatlist when this state is modified
+        />
+      </View>
     </SafeAreaView>
   );
 };
