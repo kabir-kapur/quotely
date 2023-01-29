@@ -16,7 +16,7 @@ export default function TextBox() {
   const [quoteList, setQuoteList] = React.useState([]);
   const [quoteListUID, setQuoteListUID] = React.useState(0);
 
-    return (
+  return (
     <SafeAreaView style={styles.safeAreaView}>
       <View>
         <Text style={styles.title}>muhfuckin quote app.</Text>
@@ -34,10 +34,7 @@ export default function TextBox() {
         />
         <Pressable 
          style={styles.pressable} 
-         onPress={ () => { data.push({ id: quoteListUID, 
-                                      author: authorString, 
-                                      quote: quoteString });
-                           setQuoteList(data);
+         onPress={ () => { setQuoteList([...data, { id: quoteListUID, author: authorString, quote: quoteString }]);
                            setQuoteListUID(quoteListUID + 1);
                            } } >
           <Text style={styles.buttonText}>Add Quote</Text>  
